@@ -1,0 +1,82 @@
+/*----------------------------------------------------------------
+	Home Page
+----------------------------------------------------------------*/
+
+.home {
+	background-color: #f6f6f6;
+	.container {
+		max-width: 92.307692307696em; // 1200px (1200 / 13)
+	}
+	.site-main {
+		padding: 0;
+		background-color: transparent;
+		box-shadow: none;
+		@media (min-width: $medium) {
+			float: left;
+			width: 73%;
+		}
+		@media (min-width: $large) {
+			width: 80%;
+		}
+	}
+	#secondary {
+		display: none;
+		@media (min-width: $medium) {
+			display: block;
+			float: right;
+			width: 25%;
+		}
+		@media (min-width: $large) {
+			width: 18%;
+		}
+	}
+	article {
+		width: 100%;
+		padding: 10px;
+		margin-bottom: 6px;
+		background-color: rgba(255,255,255,0.5);
+		box-shadow: 0 0 12px rgba(100,100,100,0.1);
+		@media (min-width: $medium) {
+			float: left;
+			width: 49%;
+			margin-bottom: 0;
+		}
+		@media (min-width: $large) {
+			width: 32.203389830508%;
+		}
+	}
+	.entry-title {
+		font-size: 21px;
+		margin: 14px 0 3px;
+	}
+	.sticky {
+		width: 99%;
+		@media (min-width: $large) {
+			width: 65.042372881356%;
+			margin-right: 1px;
+		}
+	}
+	.entry-image {
+		background-color: #fff;
+		a {
+			display: block;
+		}
+		img {
+			display: block;
+		}
+	}
+	.entry-header {
+		padding: 0 10px;
+		margin: 0;
+	}
+	.entry-excerpt p {
+		padding: 10px 10px 15px;
+		margin: 0;
+	}
+	#nav-below {
+		
+		@media (min-width: $medium) {
+			visibility: hidden;
+		}
+	}
+}

@@ -1,0 +1,75 @@
+/*----------------------------------------------------------------
+	Typography
+----------------------------------------------------------------*/
+
+strong {
+	font-family: $font-bold;
+}
+em {
+	font-family: $font-italic;
+}
+em strong, strong em {
+	font-family: $font-bold-italic;
+}
+
+
+h1, h2, h3, h4, h5 {
+	margin: 0;
+	line-height: 1;
+	color: darken($color, 20%);
+	font-weight: normal;
+}
+
+p {
+    margin: 0 0 1.5em;
+}
+
+button,
+input,
+select,
+textarea {
+	font-size: 100%; /* Corrects font size not being inherited in all browsers */
+	margin: 0; /* Addresses margins set differently in IE6/7, F3/4, S5, Chrome */
+	vertical-align: baseline; /* Improves appearance and consistency in all browsers */
+	*vertical-align: middle; /* Improves appearance and consistency in all browsers */
+}
+
+@font-face {
+	font-family: 'kirsten';
+	src:url('fonts/kirsten.eot');
+	src:url('fonts/kirsten.eot?#iefix') format('embedded-opentype'),
+		url('fonts/kirsten.ttf') format('truetype'),
+		url('fonts/kirsten.woff') format('woff'),
+		url('fonts/kirsten.svg#kirsten') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.icon-instagram, .icon-facebook, .icon-pinterest, .icon-prev, .icon-next, .icon-menu {
+	font-family: 'kirsten';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+.icon-instagram:before {
+	content: "\e000";
+}
+.icon-facebook:before {
+	content: "\e001";
+}
+.icon-pinterest:before {
+	content: "\e002";
+}
+.icon-prev:before {
+	content: "\e003";
+}
+.icon-next:before {
+	content: "\e004";
+}
+.icon-menu:before {
+	content: "\e005";
+}
