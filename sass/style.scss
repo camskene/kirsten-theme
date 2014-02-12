@@ -34,15 +34,14 @@ Kirsten is based on Underscores http://underscores.me/, (C) 2012-2013 Automattic
 }
 
 html {
-	font-size: 62.5%; /* Make it easy to calculate REM's, eg, 13px = 1.3rem */
 	-webkit-text-size-adjust: 100%; /* Prevents iOS text size adjust after orientation change, without disabling user zoom */
 	-ms-text-size-adjust:     100%; /* www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/ */
 }
 
 body {
 	background-color: #f6f6f6;
-	font: 13px/1.5 $font-regular, sans-serif;
-	font-size: 1.3rem;
+	// font: 13px/1.5 $font-regular, sans-serif;
+	font: 13px/1.5 "Trebuchet MS", Tahoma, Helvetica, Arial, sans-serif;
 	color: $color;
 }
 
@@ -94,36 +93,65 @@ a {
 	Basic Page Layout
 ----------------------------------------------------------------*/
 
+.site-content {
+	width: 100%;
+	overflow: hidden;
+}
+
 .container {
-	max-width: 73.8461538461568em;
+	max-width: 67.69230769230769em;
 	padding: 0 10px;
 	margin: 0 auto;
 	.single & {
 		max-width: 52.3076923076944em;
 	}
+	// .archive & {
+	// 	max-width: 92.307692307696em;
+	// }
 }
 .site-main {
 	@include clearfix;
+	transition: .2s all ease;
+	position: relative;
+	float: left;
+	width: 100%;
 	padding: 20px 10px;
+	margin-left: 0;
 	background-color: #fff;
 	box-shadow: $box-shadow;
+	.off-canvas & {
+		margin-left: -90%;
+	}
 	.single & {
 		width: 100%;
 	}
 	@media (min-width: $medium) {
-		float: left;
-		width: 68.75%;
+		// width: 68.75%;
+		width: calc(100% - 230px);
 	}
 }
-#secondary {
-	float: right;
-	width: 27.083333333333%;
+#secondary, #tertiary {
+	transition: .2s all ease;
+	position: relative;
+	float: left;
+	width: 90%;
+	padding: 0 5%;
+	margin-right: -200%;
+	.off-canvas & {
+		margin-left: 0;
+	}
+	@media (min-width: $medium) {
+		float: right;
+	    width: 200px;
+	    padding: 0;
+	    margin-right: 0;
+	}
 }
-#tertiary {
-	float: right;
-	width: 25%;
-	margin-right: 2.5%;
-}
+// #tertiary {
+// 	float: right;
+// 	width: 25%;
+// 	margin-right: 2.5%;
+// }
 .site-footer {
 	clear: both;
 	width: 100%;
@@ -131,15 +159,21 @@ a {
 	text-align: center;
 }
 
+
+
 /*----------------------------------------------------------------
 	Masthead
 ----------------------------------------------------------------*/
-
 .site-header {
-	padding: 20px 0;
+	height: 63px;
+	padding: 15px 0 0;
 	clear: both;
 	overflow: hidden;
 	text-align: center;
+	@media (min-width: $medium) {
+	    height: 83px;
+	    padding: 20px 0 0;
+	}
 }
 .site-branding {
 	float: left;
@@ -164,6 +198,9 @@ a {
 	}
 	@media (min-width: $medium) {
 		float: right;
+	}
+	.single & {
+		display: none;
 	}
 }
 
@@ -208,33 +245,34 @@ a {
 /*----------------------------------------------------------------
 	Archive
 ----------------------------------------------------------------*/
-.archive, .search {
-	.page-title {
-		text-align: center;
-		margin: 0 0 1em;
-		color: lighten($color, 20%);
-		text-transform: uppercase;
-	}
-	.entry-image {
-		float: left;
-		margin-right: 30px;
-	}
-	.entry-exerpt {
-		overflow: hidden;
-		p {
-			margin: 0;
-		}
-	}
-	.entry-title {
-		@include text-ellipsis;
-		font-size: 21px;
-		max-width: 100%;
-	}
-	article {
-		@include clearfix;
-		margin: 0 0 20px;
-	}
-}
+// .archive, .search {
+// 	.page-title {
+// 		text-align: center;
+// 		margin: 0 0 1em;
+// 		color: lighten($color, 20%);
+// 		text-transform: uppercase;
+// 	}
+// 	.entry-image {
+// 		float: left;
+// 		margin-right: 30px;
+// 		width: 230px;
+// 	}
+// 	.entry-exerpt {
+// 		overflow: hidden;
+// 		p {
+// 			margin: 0;
+// 		}
+// 	}
+// 	.entry-title {
+// 		@include text-ellipsis;
+// 		font-size: 21px;
+// 		max-width: 100%;
+// 	}
+// 	article {
+// 		@include clearfix;
+// 		margin: 0 0 20px;
+// 	}
+// }
 
 
 /*----------------------------------------------------------------
@@ -286,7 +324,7 @@ a {
 .bx-controls {
 	width: 100%;
 	&:hover {
-		opacity: 0.7;
+		opacity: 0.3;
 	}
 	a {
 		display: block;
@@ -296,17 +334,17 @@ a {
 	}
 	a:before {
 		display: block;
-		width: 32px;
-		height: 32px;
+		width: 30px;
+		height: 30px;
 		margin-top: -15px;
 		font-family: 'kirsten';
-		color: white;
+		color: #fff;
 		font-size: 30px;
 	}
 	.bx-prev {
 		left: 10px;
 		&:before {
-			content: "\e605";
+			content: "\e602";
 		}
 	}
 	.bx-next {

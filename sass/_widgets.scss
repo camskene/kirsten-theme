@@ -38,6 +38,10 @@
 	li {
 		margin: 0 0 4px;
 	}
+	.current-cat a {
+		color: #000;
+		font-weight: bold;
+	}
 	a {
 		text: {
 			decoration: none;
@@ -62,11 +66,11 @@
 }
 
 // instagram slider
-.single .widget-instagram {
-	li {
-		width: 100%;
-	}
-}
+// .single .widget-instagram {
+// 	li {
+// 		width: 100%;
+// 	}
+// }
 
 /*----------------------------------------------------------------
 	Instagram Carousel Widget
@@ -143,23 +147,23 @@
 	Recent Posts Widget
 ----------------------------------------------------------------*/
 
-// .widget-recent-posts {
-// 	li {
-// 		display: block;
-// 		clear: both;
-// 		margin: 0 0 1em;
-// 		figure {
-// 			float: left;
-// 			width: 25%;
-// 		}
-// 		h5 {
-// 			float: left;
-// 			width: 75%;
-// 			padding: 10px;
-// 			font-size: 13px;
-// 		}
-// 		a {
-// 			color: inherit;
-// 		}
-// 	}
-// }
+.widget-recent-posts {
+	li {
+		display: block;
+		clear: both;
+		margin: 0 0 1em;
+		figure {
+			float: left;
+			width: 25%;
+		}
+		h5 {
+			float: left;
+			width: 75%;
+			padding: 10px;
+			font-size: 13px;
+		}
+		a {
+			color: inherit;
+		}
+	}
+}

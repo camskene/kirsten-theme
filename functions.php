@@ -113,7 +113,7 @@ function kirsten_scripts() {
     // wp_enqueue_script( 'kirsten-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
     // wp_enqueue_script( 'kirsten-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
-    
+
     wp_enqueue_script( 'kirsten-plugins', get_template_directory_uri() . '/js/plugins.js', array(), '20130115', true );
 
     wp_enqueue_script( 'kirsten-theme', get_template_directory_uri() . '/js/theme.js', array(), '20130115', true );
@@ -134,27 +134,29 @@ add_action( 'wp_enqueue_scripts', 'kirsten_scripts' );
  */
 function kirsten_instagram( $atts ) {
 
-    extract( shortcode_atts( array(  
-        'user_id' => '7281752',  
+    extract( shortcode_atts( array(
+        'user_id' => '7281752',
         'count' => '9',
         'class' => 'widget-instagram'
     ), $atts ) );
 
     $url = 'https://api.instagram.com/v1/users/'.$user_id.'/media/recent/?access_token=7281752.262976a.e395be3ff6c949bd9807873b6883a1b1&count='.$count;
 
-    // Also Perhaps you should cache the results as the instagram API is slow
-    $cache = './'.sha1($url).'.json';
-    if(file_exists($cache) && filemtime($cache) > time() - 60*60){
-        // If a cache file exists, and it is newer than 1 hour, use it
-        $jsonData = json_decode(file_get_contents($cache));
-    } else {
-        $jsonData = json_decode((file_get_contents($url)));
-        file_put_contents($cache,json_encode($jsonData));
-    }
+    // cache the results as the instagram API is slow
+    // $cache = './'.sha1($url).'.json';
+    // if(file_exists($cache) && filemtime($cache) > time() - 60*60){
+    //     // If a cache file exists, and it is newer than 1 hour, use it
+    //     $jsonData = json_decode(file_get_contents($cache));
+    // } else {
+    //     $jsonData = json_decode((file_get_contents($url)));
+    //     file_put_contents($cache,json_encode($jsonData));
+    // }
+    $jsonData = json_decode((file_get_contents($url)));
+
     $result .= "<ul class='". $class ."'>";
 
     foreach ($jsonData->data as $key=>$value) {
-        $result .= '<li><a href="'.$value->link.'"><img src="'.$value->images->low_resolution->url.'" alt="'.$value->caption->text.'" /></a></li>';
+        $result .= '<li><a href="'.$value->link.'"><img src="'.$value->images->thumbnail->url.'" alt="'.$value->caption->text.'" /></a></li>';
     }
     $result .= "</ul>";
     return $result;
@@ -194,28 +196,14 @@ add_shortcode('recent-posts','kirsten_recent_posts');
 
 
 /*
- * Large Header
+ * Ajax Requests - large screen
  */
-function header_large_screen() {
-    require get_template_directory() . '/inc/header-large-screen.php';
-    die();
-}
-// creating Ajax call for WordPress
-add_action( 'wp_ajax_nopriv_header_large_screen', 'header_large_screen' );
-add_action( 'wp_ajax_header_large_screen', 'header_large_screen' );
-
+require get_template_directory() . '/inc/ajax-requests-large-screen.php';
 
 /*
- * Small Header
+ * Ajax Requests - small screen
  */
-function header_small_screen() {
-    require get_template_directory() . '/inc/header-small-screen.php';
-    die();
-}
-// creating Ajax call for WordPress
-add_action( 'wp_ajax_nopriv_header_small_screen', 'header_small_screen' );
-add_action( 'wp_ajax_header_small_screen', 'header_small_screen' );
-
+require get_template_directory() . '/inc/ajax-requests-small-screen.php';
 
 /**
  * Implement the Custom Header feature.
@@ -235,12 +223,12 @@ require get_template_directory() . '/inc/extras.php';
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/customizer.php';
+// require get_template_directory() . '/inc/customizer.php';
 
 /**
  * Load Jetpack compatibility file.
  */
-require get_template_directory() . '/inc/jetpack.php';
+// require get_template_directory() . '/inc/jetpack.php';
 
 /**
  * Load custom gallery template (replaces WP's gallery markup and css)

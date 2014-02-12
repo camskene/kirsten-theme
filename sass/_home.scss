@@ -2,7 +2,7 @@
 	Home Page
 ----------------------------------------------------------------*/
 
-.home {
+.home, .archive {
 	background-color: #f6f6f6;
 	.container {
 		max-width: 92.307692307696em; // 1200px (1200 / 13)
@@ -19,11 +19,9 @@
 			width: 80%;
 		}
 	}
-	#secondary {
-		display: none;
+	#secondary, #tertiary {
 		@media (min-width: $medium) {
-			display: block;
-			float: right;
+			position: relative;
 			width: 25%;
 		}
 		@media (min-width: $large) {
@@ -46,11 +44,17 @@
 		}
 	}
 	.entry-title {
-		font-size: 21px;
-		margin: 14px 0 3px;
+		font-size: 18px;
+		margin: 14px 0 7px;
+	}
+	.entry-meta {
+		display: none;
 	}
 	.sticky {
-		width: 99%;
+		width: 100%;
+		@media (min-width: $medium) {
+		    width: 99%;
+		}
 		@media (min-width: $large) {
 			width: 65.042372881356%;
 			margin-right: 1px;
@@ -70,11 +74,11 @@
 		margin: 0;
 	}
 	.entry-excerpt p {
-		padding: 10px 10px 15px;
+		padding: 0 10px 15px;
 		margin: 0;
 	}
 	#nav-below {
-		
+
 		@media (min-width: $medium) {
 			visibility: hidden;
 		}

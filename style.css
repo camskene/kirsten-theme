@@ -1,4 +1,4 @@
-/*
+/*!
 Theme Name: Kirsten
 Theme URI: http://underscores.me/
 Author: Cam Skene
@@ -13,7 +13,7 @@ Tags:
 
 Kirsten is based on Underscores http://underscores.me/, (C) 2012-2013 Automattic, Inc.
 */
-/* normalize.css v2.1.3 | MIT License | git.io/normalize */
+/*! normalize.css v2.1.3 | MIT License | git.io/normalize */
 /* ==========================================================================
    HTML5 display definitions
    ========================================================================== */
@@ -690,6 +690,8 @@ table {
   white-space: nowrap;
   height: 21px;
   padding: 3px 8px;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
   box-sizing: content-box; }
 
 .chosen-container-active {
@@ -790,6 +792,9 @@ table {
 ----------------------------------------------------------------*/
 [id^="categories"] li {
   margin: 0 0 4px; }
+[id^="categories"] .current-cat a {
+  color: #000;
+  font-weight: bold; }
 [id^="categories"] a {
   text-decoration: none;
   text-transformation: uppercase;
@@ -803,9 +808,6 @@ table {
   width: 48%; }
 .widget-instagram li:nth-child(even) {
   margin-left: 2%; }
-
-.single .widget-instagram li {
-  width: 100%; }
 
 /*----------------------------------------------------------------
 	Instagram Carousel Widget
@@ -849,12 +851,12 @@ table {
     width: 48%;
     margin: 0 0 1em;
     text-align: center; }
-    @media (min-width: 600px) {
+    @media (min-width: 640px) {
       .yarpp-related li {
         width: 25%; } }
   .yarpp-related li:nth-child(odd) {
     margin-right: 2%; }
-    @media (min-width: 600px) {
+    @media (min-width: 640px) {
       .yarpp-related li:nth-child(odd) {
         margin-right: 0; } }
   .yarpp-related a {
@@ -869,12 +871,27 @@ table {
 /*----------------------------------------------------------------
 	Recent Posts Widget
 ----------------------------------------------------------------*/
+.widget-recent-posts li {
+  display: block;
+  clear: both;
+  margin: 0 0 1em; }
+  .widget-recent-posts li figure {
+    float: left;
+    width: 25%; }
+  .widget-recent-posts li h5 {
+    float: left;
+    width: 75%;
+    padding: 10px;
+    font-size: 13px; }
+  .widget-recent-posts li a {
+    color: inherit; }
+
 /*----------------------------------------------------------------
 	Main Navigation
 ----------------------------------------------------------------*/
 .main-navigation {
   margin: 0 0 1em; }
-  @media (min-width: 600px) {
+  @media (min-width: 640px) {
     .main-navigation {
       float: left;
       margin: 14px 0 0; } }
@@ -889,16 +906,17 @@ table {
     margin: 0 0 0 10px; }
     .main-navigation li:last-child a:after {
       content: ""; }
-    @media (min-width: 600px) {
+    @media (min-width: 640px) {
       .main-navigation li {
         float: left; } }
   .main-navigation a {
     display: inline-block;
     text-decoration: none;
     color: #888888; }
-    .main-navigation a:after {
-      content: "/";
-      margin-left: 10px; }
+    @media (min-width: 640px) {
+      .main-navigation a:after {
+        content: "/";
+        margin-left: 10px; } }
 
 /*----------------------------------------------------------------
 	Social Links
@@ -906,7 +924,7 @@ table {
 #menu-social {
   padding: 0;
   margin: 0; }
-  @media (min-width: 600px) {
+  @media (min-width: 640px) {
     #menu-social {
       float: right;
       margin: 0 20px 0 0; } }
@@ -915,10 +933,10 @@ table {
     list-style: none;
     padding: 0;
     margin: 0 1em; }
-    @media (min-width: 600px) {
+    @media (min-width: 640px) {
       #menu-social li {
         float: left;
-        margin: 0 0 0 20px; } }
+        margin: 0 0 0 10px; } }
   #menu-social a {
     font-family: "kirsten";
     font-size: 30px;
@@ -927,7 +945,7 @@ table {
     #menu-social a:hover {
       color: #a2a2a2; }
   .single #menu-social {
-    margin: 0; }
+    margin: 0 10px 0; }
 
 /*----------------------------------------------------------------
 	Post Navigation
@@ -951,18 +969,18 @@ table {
   margin-bottom: 0; }
 
 /*----------------------------------------------------------------
-	Small Screen 
+	Small Screen
 ----------------------------------------------------------------*/
 .menu-toggle {
   float: right;
-  display: inline-block; }
+  display: block;
+  padding: 6px;
+  border: 1px solid #ccc; }
 
 .menu-toggle:before {
   content: "";
   display: block;
   position: relative;
-  top: 5px;
-  right: 8px;
   width: 24px;
   height: 3px;
   border-top: 9px double #888;
@@ -971,68 +989,70 @@ table {
 /*----------------------------------------------------------------
 	Home Page
 ----------------------------------------------------------------*/
-.home {
+.home, .archive {
   background-color: #f6f6f6; }
-  .home .container {
+  .home .container, .archive .container {
     max-width: 92.307692307696em; }
-  .home .site-main {
+  .home .site-main, .archive .site-main {
     padding: 0;
     background-color: transparent;
     box-shadow: none; }
-    @media (min-width: 600px) {
-      .home .site-main {
+    @media (min-width: 640px) {
+      .home .site-main, .archive .site-main {
         float: left;
         width: 73%; } }
     @media (min-width: 900px) {
-      .home .site-main {
+      .home .site-main, .archive .site-main {
         width: 80%; } }
-  .home #secondary {
-    display: none; }
-    @media (min-width: 600px) {
-      .home #secondary {
-        display: block;
-        float: right;
-        width: 25%; } }
-    @media (min-width: 900px) {
-      .home #secondary {
-        width: 18%; } }
-  .home article {
+  @media (min-width: 640px) {
+    .home #secondary, .home #tertiary, .archive #secondary, .archive #tertiary {
+      position: relative;
+      width: 25%; } }
+  @media (min-width: 900px) {
+    .home #secondary, .home #tertiary, .archive #secondary, .archive #tertiary {
+      width: 18%; } }
+  .home article, .archive article {
     width: 100%;
     padding: 10px;
     margin-bottom: 6px;
     background-color: rgba(255, 255, 255, 0.5);
     box-shadow: 0 0 12px rgba(100, 100, 100, 0.1); }
-    @media (min-width: 600px) {
-      .home article {
+    @media (min-width: 640px) {
+      .home article, .archive article {
         float: left;
         width: 49%;
         margin-bottom: 0; } }
     @media (min-width: 900px) {
-      .home article {
+      .home article, .archive article {
         width: 32.203389830508%; } }
-  .home .entry-title {
-    font-size: 21px;
-    margin: 14px 0 3px; }
-  .home .sticky {
-    width: 99%; }
+  .home .entry-title, .archive .entry-title {
+    font-size: 18px;
+    margin: 14px 0 7px; }
+  .home .entry-meta, .archive .entry-meta {
+    display: none; }
+  .home .sticky, .archive .sticky {
+    width: 100%; }
+    @media (min-width: 640px) {
+      .home .sticky, .archive .sticky {
+        width: 99%; } }
     @media (min-width: 900px) {
-      .home .sticky {
+      .home .sticky, .archive .sticky {
         width: 65.042372881356%;
         margin-right: 1px; } }
-  .home .entry-image {
+  .home .entry-image, .archive .entry-image {
     background-color: #fff; }
-    .home .entry-image a {
+    .home .entry-image a, .archive .entry-image a {
       display: block; }
-    .home .entry-image img {
+    .home .entry-image img, .archive .entry-image img {
       display: block; }
-  .home .entry-header {
+  .home .entry-header, .archive .entry-header {
     padding: 0 10px;
     margin: 0; }
-  .home .entry-excerpt p {
-    padding: 10px 10px 15px;
+  .home .entry-excerpt p, .archive .entry-excerpt p {
+    padding: 0 10px 15px;
     margin: 0; }
-  @media (min-width: 600px) {
-    .home #nav-below {
+  @media (min-width: 640px) {
+    .home #nav-below, .archive #nav-below {
       visibility: hidden; } }
 
 /*----------------------------------------------------------------
@@ -1111,6 +1131,8 @@ table {
 	Form Elements
 ----------------------------------------------------------------*/
 input {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
   box-sizing: content-box;
   height: 21px;
   padding: 3px;
@@ -1129,18 +1151,9 @@ input[type="submit"] {
 /*----------------------------------------------------------------
 	Typography
 ----------------------------------------------------------------*/
-strong {
-  font-family: "Myriad W01 Bd"; }
-
-em {
-  font-family: "Myriad W01 It"; }
-
-em strong, strong em {
-  font-family: "Myriad W01 Bd It"; }
-
 h1, h2, h3, h4, h5 {
   margin: 0;
-  line-height: 1;
+  line-height: 1.2;
   color: #555555;
   font-weight: normal; }
 
@@ -1167,7 +1180,7 @@ textarea {
   font-weight: normal;
   font-style: normal; }
 
-.icon-instagram, .icon-facebook, .icon-pinterest, .icon-prev, .icon-next, .icon-menu {
+[class^="icon-"], [class*=" icon-"] {
   font-family: 'kirsten';
   speak: none;
   font-style: normal;
@@ -1175,25 +1188,24 @@ textarea {
   font-variant: normal;
   text-transform: none;
   line-height: 1;
-  -webkit-font-smoothing: antialiased; }
-
-.icon-instagram:before {
-  content: "\e000"; }
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
 
 .icon-facebook:before {
-  content: "\e001"; }
+  content: "\e600"; }
 
 .icon-pinterest:before {
-  content: "\e002"; }
+  content: "\e601"; }
 
 .icon-prev:before {
-  content: "\e003"; }
+  content: "\e602"; }
+
+.icon-instagram:before {
+  content: "\e603"; }
 
 .icon-next:before {
-  content: "\e004"; }
-
-.icon-menu:before {
-  content: "\e005"; }
+  content: "\e604"; }
 
 /*----------------------------------------------------------------
 	Global
@@ -1204,8 +1216,6 @@ textarea {
   box-sizing: border-box; }
 
 html {
-  font-size: 62.5%;
-  /* Make it easy to calculate REM's, eg, 13px = 1.3rem */
   -webkit-text-size-adjust: 100%;
   /* Prevents iOS text size adjust after orientation change, without disabling user zoom */
   -ms-text-size-adjust: 100%;
@@ -1213,8 +1223,7 @@ html {
 
 body {
   background-color: #f6f6f6;
-  font: 13px/1.5 "Myriad W01 Regular", sans-serif;
-  font-size: 1.3rem;
+  font: 13px/1.5 "Trebuchet MS", Tahoma, Helvetica, Arial, sans-serif;
   color: #888888; }
 
 img {
@@ -1230,11 +1239,11 @@ img {
 
 .hide-on-small {
   display: none; }
-  @media (min-width: 600px) {
+  @media (min-width: 640px) {
     .hide-on-small {
       display: block; } }
 
-@media (min-width: 600px) {
+@media (min-width: 640px) {
   .hide-on-large {
     display: none; } }
 
@@ -1251,36 +1260,53 @@ a {
 /*----------------------------------------------------------------
 	Basic Page Layout
 ----------------------------------------------------------------*/
+.site-content {
+  width: 100%;
+  overflow: hidden; }
+
 .container {
-  max-width: 73.8461538461568em;
+  max-width: 67.69230769230769em;
   padding: 0 10px;
   margin: 0 auto; }
   .single .container {
     max-width: 52.3076923076944em; }
 
 .site-main {
+  transition: .2s all ease;
+  position: relative;
+  float: left;
+  width: 100%;
   padding: 20px 10px;
+  margin-left: 0;
   background-color: #fff;
   box-shadow: 0 0 12px rgba(100, 100, 100, 0.1); }
   .site-main:after {
     content: "";
     display: table;
     clear: both; }
+  .off-canvas .site-main {
+    margin-left: -90%; }
   .single .site-main {
     width: 100%; }
-  @media (min-width: 600px) {
+  @media (min-width: 640px) {
     .site-main {
-      float: left;
-      width: 68.75%; } }
+      width: calc(100% - 230px); } }
 
-#secondary {
-  float: right;
-  width: 27.083333333333%; }
-
-#tertiary {
-  float: right;
-  width: 25%;
-  margin-right: 2.5%; }
+#secondary, #tertiary {
+  transition: .2s all ease;
+  position: relative;
+  float: left;
+  width: 90%;
+  padding: 0 5%;
+  margin-right: -200%; }
+  .off-canvas #secondary, .off-canvas #tertiary {
+    margin-left: 0; }
+  @media (min-width: 640px) {
+    #secondary, #tertiary {
+      float: right;
+      width: 200px;
+      padding: 0;
+      margin-right: 0; } }
 
 .site-footer {
   clear: both;
@@ -1292,14 +1318,19 @@ a {
 	Masthead
 ----------------------------------------------------------------*/
 .site-header {
-  padding: 20px 0;
+  height: 63px;
+  padding: 15px 0 0;
   clear: both;
   overflow: hidden;
   text-align: center; }
+  @media (min-width: 640px) {
+    .site-header {
+      height: 83px;
+      padding: 20px 0 0; } }
 
 .site-branding {
   float: left; }
-  @media (min-width: 600px) {
+  @media (min-width: 640px) {
     .site-branding {
       margin: 8px 30px 0 0; } }
   .site-branding a {
@@ -1315,9 +1346,11 @@ a {
     clear: both; }
   .site-search [type="submit"] {
     background-color: #fff; }
-  @media (min-width: 600px) {
+  @media (min-width: 640px) {
     .site-search {
       float: right; } }
+  .single .site-search {
+    display: none; }
 
 /*----------------------------------------------------------------
 	Entries (Posts)
@@ -1350,31 +1383,6 @@ a {
 /*----------------------------------------------------------------
 	Archive
 ----------------------------------------------------------------*/
-.archive .page-title, .search .page-title {
-  text-align: center;
-  margin: 0 0 1em;
-  color: #bbbbbb;
-  text-transform: uppercase; }
-.archive .entry-image, .search .entry-image {
-  float: left;
-  margin-right: 30px; }
-.archive .entry-exerpt, .search .entry-exerpt {
-  overflow: hidden; }
-  .archive .entry-exerpt p, .search .entry-exerpt p {
-    margin: 0; }
-.archive .entry-title, .search .entry-title {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-size: 21px;
-  max-width: 100%; }
-.archive article, .search article {
-  margin: 0 0 20px; }
-  .archive article:after, .search article:after {
-    content: "";
-    display: table;
-    clear: both; }
-
 /*----------------------------------------------------------------
 	Gallery Grid - using plugin instead
 ----------------------------------------------------------------*/
@@ -1404,7 +1412,7 @@ a {
 .bx-controls {
   width: 100%; }
   .bx-controls:hover {
-    opacity: 0.7; }
+    opacity: 0.3; }
   .bx-controls a {
     display: block;
     position: absolute;
@@ -1412,16 +1420,16 @@ a {
     color: transparent; }
   .bx-controls a:before {
     display: block;
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     margin-top: -15px;
     font-family: 'kirsten';
-    color: white;
+    color: #fff;
     font-size: 30px; }
   .bx-controls .bx-prev {
     left: 10px; }
     .bx-controls .bx-prev:before {
-      content: "\e605"; }
+      content: "\e602"; }
   .bx-controls .bx-next {
     right: 6px; }
     .bx-controls .bx-next:before {

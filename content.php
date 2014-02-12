@@ -9,7 +9,7 @@
 	<?php if ( is_search() || is_archive() ) : // Only display Excerpts for Search ?>
 	<div class="entry-summary">
 		<figure class="entry-image">
-			<?php get_the_image( array( 'attachment' => true, 'image_scan' => true, 'size' => 'thumbnail', 'default_image' => 'http://kirstenrickert.com/wp-content/uploads/2011/05/IMG_7889-150x150.jpg') ); ?>
+			<?php get_the_image( array( 'attachment' => false, 'image_scan' => true, 'size' => 'thumbnail', 'default_image' => 'http://kirstenrickert.com/wp-content/uploads/2011/05/IMG_7889-150x150.jpg') ); ?>
 		</figure>
 		<header class="entry-header">
 			<h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
@@ -20,7 +20,7 @@
 			</div><!-- .entry-meta -->
 			<?php endif; ?>
 		</header><!-- .entry-header -->
-		<div class="entry-exerpt">
+		<div class="entry-excerpt">
 			<?php the_excerpt(); ?>
 		</div>
 	</div><!-- .entry-summary -->

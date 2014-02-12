@@ -31,4 +31,5 @@ get_header(); ?>
 	</div><!-- #primary -->
 
 <?php get_sidebar(); ?>
+<?php //get_sidebar('two'); ?>
 <?php get_footer(); ?>

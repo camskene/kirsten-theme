@@ -35,5 +35,5 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-<?php get_sidebar('home'); ?>
+<?php get_sidebar('one'); ?>
 <?php get_footer(); ?>

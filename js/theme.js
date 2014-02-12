@@ -2,7 +2,7 @@ KR = {};
 
 (function($) {
     KR.packery = function(state) {
-        var $container = $(".home main");
+        var $container = $(".home main, .archive main");
         var $containerWidth = $container.width();
         if (state === "on") {
             $container.imagesLoaded(function() {
@@ -28,13 +28,14 @@ KR = {};
                 function(newElements) {
                     // hide new items while they are loading
                     var $newElems = $(newElements).css({
-                        opacity: 0
+                        opacity: 0,
+                        visiblility: "hidden"
                     });
                     // ensure that images load before adding to masonry layout
                     $newElems.imagesLoaded(function() {
                         // show elems now they're ready
                         $newElems.animate({
-                            opacity: 1
+                            visiblility: "visible"
                         });
                         $container.packery('appended', $newElems, true);
                     });
@@ -50,6 +51,7 @@ KR = {};
 
     };
 
+
     KR.chosen = function() {
         $("select").chosen({
             disable_search: true,
@@ -57,112 +59,88 @@ KR = {};
         });
     };
 
-    KR.instagramCarousel = function() {
-        $(".widget-instagram-carousel").bxSlider({
-            pager: false
-        });
+    KR.fitVids = function() {
+        $(".post").fitVids();
     }
 
-    KR.externalLinksNewWindow = function() {
-        // Open external links in a new window
-        $('a').each(function() {
-            var a = new RegExp('/' + window.location.host + '/');
-            if (!a.test(this.href)) {
-                $(this).click(function(event) {
-                    window.open(this.href, '_blank');
-                    return false;
-                });
-            }
-        });
-    };
+
+    // KR.instagramCarousel = function() {
+    //     $(".widget-instagram-carousel").bxSlider({
+    //         pager: false
+    //     });
+    // };
+
+
+    // KR.externalLinksNewWindow = function() {
+    //     // Open external links in a new window
+    //     $('a').each(function() {
+    //         var a = new RegExp('/' + window.location.host + '/');
+    //         if (!a.test(this.href)) {
+    //             $(this).click(function(event) {
+    //                 window.open(this.href, '_blank');
+    //                 return false;
+    //             });
+    //         }
+    //     });
+    // };
+
 
     KR.toggleMenu = function() {
-        $(".menu-toggle").click(function(){
-            $(this).next().toggle();
+        $("body").on("click", ".menu-toggle", function(e) {
+            e.preventDefault();
+            $("body").toggleClass("off-canvas");
         })
-    }
+        $("html").on("swiperight", ".off-canvas", function(e) {
+            $("body").toggleClass("off-canvas");
+        })
+    };
 
-    KR.largeScreenRequests = function() {
-        $.ajax({
-            type: 'POST',
-            url: '/wp-admin/admin-ajax.php',
-            data: {
-                action: 'header_large_screen', // the PHP function to run
-            },
-            success: function(data, textStatus, XMLHttpRequest) {
-                $('.site-header .container').html(data); // put our list of links into it
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
-                if(typeof console === "undefined") {
-                    console = {
-                        log: function() { },
-                        debug: function() { },
-                    };
-                }
-                if (XMLHttpRequest.status == 404) {
-                    console.log('Element not found.');
-                } else {
-                    console.log('Error: ' + errorThrown);
-                }
-            }
-        });
-
-    }
+    // KR.largeScreenRequests = function() {
+    //     KR.ajax("header_large_screen", ".site-header .container")
+    // };
 
 
-    KR.smallScreenRequests = function() {
-        $.ajax({
-            type: 'POST',
-            url: '/wp-admin/admin-ajax.php',
-            data: {
-                action: 'header_small_screen', // the PHP function to run
-            },
-            success: function(data, textStatus, XMLHttpRequest) {
-                $('.site-header .container').html(data); // put our list of links into it
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) {
-                if(typeof console === "undefined") {
-                    console = {
-                        log: function() { },
-                        debug: function() { },
-                    };
-                }
-                if (XMLHttpRequest.status == 404) {
-                    console.log('Element not found.');
-                } else {
-                    console.log('Error: ' + errorThrown);
-                }
-            }
-        });
+    // KR.smallScreenRequests = function() {
+    //     KR.ajax("header_small_screen", ".site-header .container")
+    // };
 
-    }
+
+    // KR.ajax = function(action, node) {
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "/wp-admin/admin-ajax.php",
+    //         cache: true,
+    //         data: {
+    //             action: action
+    //         },
+    //         success: function(data, textStatus, XMLHttpRequest) {
+    //             $(node).html(data);
+    //         }
+    //     })
+    // };
 
 
 })(jQuery);
 
 jQuery(document).ready(function($) {
-    KR.chosen();
-    KR.instagramCarousel();
-    // KR.externalLinksNewWindow();
     KR.toggleMenu();
+    KR.fitVids();
 
-    enquire.register("screen and (min-width: 700px)", {
+    // KR.instagramCarousel();
+    // KR.externalLinksNewWindow();
+
+    enquire.register("screen and (min-width: 640px)", {
         match : function() {
             KR.packery("on");
-            KR.largeScreenRequests();
+            KR.chosen();
+            // KR.largeScreenRequests();
         },
         unmatch : function() {
             KR.packery("off");
         }
-    })
-
-    enquire.register("screen and (max-width: 699px)", {
+    }).register("screen and (max-width: 639px)", {
         match : function() {
-            KR.smallScreenRequests();
+            // KR.smallScreenRequests();
         }
     })
-
-})
-
-jQuery(window).load(function() {
 })

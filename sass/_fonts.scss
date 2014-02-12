@@ -2,20 +2,20 @@
 	Typography
 ----------------------------------------------------------------*/
 
-strong {
-	font-family: $font-bold;
-}
-em {
-	font-family: $font-italic;
-}
-em strong, strong em {
-	font-family: $font-bold-italic;
-}
+// strong {
+// 	font-family: $font-bold;
+// }
+// em {
+// 	font-family: $font-italic;
+// }
+// em strong, strong em {
+// 	font-family: $font-bold-italic;
+// }
 
 
 h1, h2, h3, h4, h5 {
 	margin: 0;
-	line-height: 1;
+	line-height: 1.2;
 	color: darken($color, 20%);
 	font-weight: normal;
 }
@@ -45,7 +45,7 @@ textarea {
 	font-style: normal;
 }
 
-.icon-instagram, .icon-facebook, .icon-pinterest, .icon-prev, .icon-next, .icon-menu {
+[class^="icon-"], [class*=" icon-"] {
 	font-family: 'kirsten';
 	speak: none;
 	font-style: normal;
@@ -53,23 +53,25 @@ textarea {
 	font-variant: normal;
 	text-transform: none;
 	line-height: 1;
+
+	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
-.icon-instagram:before {
-	content: "\e000";
-}
+
 .icon-facebook:before {
-	content: "\e001";
+	content: "\e600";
 }
 .icon-pinterest:before {
-	content: "\e002";
+	content: "\e601";
 }
 .icon-prev:before {
-	content: "\e003";
+	content: "\e602";
+}
+.icon-instagram:before {
+	content: "\e603";
 }
 .icon-next:before {
-	content: "\e004";
+	content: "\e604";
 }
-.icon-menu:before {
-	content: "\e005";
-}
+
